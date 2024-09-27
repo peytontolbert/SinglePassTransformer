@@ -21,8 +21,7 @@ Welcome to the **Single-Pass Training Method** project! This project introduces 
 Mathematical Derivation for Closed-Form Solution
 1. General Formulation
 In traditional gradient descent, the weight update for each batch 
-𝑖
-i can be expressed as:
+𝑖 can be expressed as:
 ```math
 𝑊𝑡+1=𝑊𝑡−𝜂∇𝑊𝐿𝑖(𝑊𝑡)
 ```
