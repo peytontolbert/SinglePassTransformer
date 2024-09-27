@@ -37,7 +37,7 @@ After one epoch, the cumulative weight update for all batches
 {𝑖=1,2,…,𝑁batches} can be represented as:
 
 ```
-𝑊new=𝑊old−𝜂  ∑𝑖=1𝑁batches  ∇𝑊𝐿𝑖(𝑊old)
+𝑊new=𝑊old−𝜂  𝑖=1∑𝑁batches  ∇𝑊𝐿𝑖(𝑊old)
 ```
 This summation accounts for the cumulative gradient descent updates over the entire epoch.
 
