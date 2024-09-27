@@ -128,32 +128,40 @@ Our single-pass training method is implemented in the `train.py` script. Key com
 - **Training Loop:** Optimizes the training loop to handle data in a single pass, updating model weights efficiently.
 - **Evaluation:** Provides functions to evaluate model performance on new data.
 
-
+```
 python:train.py
 import torch
 import torch.nn as nn
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 import numpy as np
 from datasets import load_dataset
+```
 
 Incorporate the batch-wise gradient effects analytically in the solution
+```
 def compute_batch_aware_solution(K, y, num_epochs, batch_size, learning_rate, lambda_reg=1e-5):
 n = K.shape[0]
 I = torch.eye(n)
 # Simulate the effect of batch-wise gradient updates
 batch_effect = (n // batch_size) learning_rate num_epochs # Approximate cumulative effect over batches
 effective_K = K + lambda_reg I
+```
+
 # Incorporate batch effects in the kernel matrix
+```
 A_inv = torch.inverse(effective_K batch_effect + lambda_reg I)
 alpha = torch.mm(A_inv, y)
 return alpha
+```
 
 ## Project Structure
+```
 single-pass-training/
 ├── compare.py
 ├── traditional.py
 ├── train.py
 ├── README.md
+```
 
 - **compare.py:** Script to compare traditional and single-pass training methods.
 - **traditional.py:** Implements the traditional training approach for baseline comparison.
