@@ -76,8 +76,8 @@ Where:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/peytontolbert/single-pass-training.git
-   cd single-pass-training
+   git clone https://github.com/peytontolbert/SinglePassTransformer.git
+   cd SinglePassTransformer
    ```
 
 2. **Create a Virtual Environment**
