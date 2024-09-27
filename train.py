@@ -54,22 +54,45 @@ print("Output Embeddings shape:", output_embeddings.shape)
 input_dim = input_embeddings.shape[1]
 print("Input dimension set to:", input_dim)
 
-# Define a custom deep kernel function
+
+# Quantum-Inspired Dynamic Deep Kernel
 class DeepKernel(nn.Module):
     def __init__(self, input_dim, hidden_dim):
         super(DeepKernel, self).__init__()
         self.layer1 = nn.Linear(input_dim, hidden_dim)
-        self.activation = nn.ReLU()
         self.layer2 = nn.Linear(hidden_dim, hidden_dim)
+        self.activation = nn.ReLU()
+        self.entanglement_strength = nn.Parameter(torch.ones(1))  # Represents dynamic entanglement strength
     
     def forward(self, x1, x2):
+        # Apply initial transformation (Hadamard-like operation for feature superposition)
         x1 = self.activation(self.layer1(x1))
-        x1 = self.activation(self.layer2(x1))
-        x1 = x1 / x1.norm(dim=1, keepdim=True) # Normalize activations
         x2 = self.activation(self.layer1(x2))
-        x2 = self.activation(self.layer2(x2))
-        x2 = x2 / x2.norm(dim=1, keepdim=True) # Normalize activations
-        return torch.mm(x1, x2.T)
+
+        # Normalize features for superposition
+        x1 = x1 / x1.norm(dim=1, keepdim=True)
+        x2 = x2 / x2.norm(dim=1, keepdim=True)
+
+        # Simulate feature entanglement
+        entangled_x1 = x1 * self.entanglement_strength
+        entangled_x2 = x2 * self.entanglement_strength
+
+        # Further transformation and dynamic evolution
+        evolved_x1 = self.activation(self.layer2(entangled_x1))
+        evolved_x2 = self.activation(self.layer2(entangled_x2))
+
+        # Final normalization (binding/unbinding simulation)
+        evolved_x1 = evolved_x1 / evolved_x1.norm(dim=1, keepdim=True)
+        evolved_x2 = evolved_x2 / evolved_x2.norm(dim=1, keepdim=True)
+
+        # Calculate the dynamic kernel value as a quantum-like interaction
+        kernel_value = torch.mm(evolved_x1, evolved_x2.T)
+
+        # Update entanglement strength (simulating quantum state evolution)
+        self.entanglement_strength.data = torch.clamp(
+            self.entanglement_strength + 0.05 * (torch.randn(1) - 0.5), 0, 1
+        )
+        return kernel_value
 
 # Initialize the kernel with fixed input_dim
 hidden_dim = 128  # You can adjust this parameter

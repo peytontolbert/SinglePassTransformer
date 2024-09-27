@@ -46,7 +46,7 @@ def run_script(script_path):
     }
 
 def main():
-    scripts = ['traditional.py', 'train2.py']
+    scripts = ['traditional.py', 'train.py']
     results = {}
 
     for script in scripts:
