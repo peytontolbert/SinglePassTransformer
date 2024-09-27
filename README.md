@@ -18,6 +18,53 @@
 
 Welcome to the **Single-Pass Training Method** project! This project introduces an innovative approach to training transformer-based models by leveraging a single-pass dataset loading mechanism. By optimizing the training process, our method enhances efficiency, reduces computational overhead, and maintains high performance across various tasks.
 
+Mathematical Derivation for Closed-Form Solution
+1. General Formulation
+In traditional gradient descent, the weight update for each batch 
+𝑖
+i can be expressed as:
+```
+𝑊𝑡+1=𝑊𝑡−𝜂∇𝑊𝐿𝑖(𝑊𝑡)
+```
+Where:
+
+𝑊𝑡  is the weight at step 𝑡.
+𝜂 is the learning rate.
+𝐿𝑖 is the loss function for batch 𝑖.
+
+
+After one epoch, the cumulative weight update for all batches 
+{𝑖=1,2,…,𝑁batches} can be represented as:
+
+```
+𝑊new=𝑊old−𝜂  ∑𝑖=1𝑁batches  ∇𝑊𝐿𝑖(𝑊old)
+```
+This summation accounts for the cumulative gradient descent updates over the entire epoch.
+
+2. Incorporating Batch-Wise Gradient Effects
+To derive a closed-form solution, we need to simulate the effect of multiple gradient updates for each batch in a single step. This involves computing an effective gradient that encapsulates the contributions of all batches:
+
+```
+ΔW=−η i=1∑Nbatches  ∇W Li(W)
+```
+
+This equation is equivalent to computing a "global gradient" that captures the cumulative effect of all individual batch gradients.
+
+3. Closed-Form Solution Using Kernel Matrix
+To extend this concept to our kernel-based model, we use the kernel matrix 𝐾 that captures the relationships between data points. The optimal weight vector in the kernel space can be calculated using:
+```
+𝛼=(𝐾+𝜆𝐼)−1𝑌
+```
+Where:
+
+𝐾 is the kernel matrix representing the inner product of all training embeddings.
+𝜆𝐼 is a regularization term.
+𝑌 represents the target values.
+
+
+
+
+
 ## Features
 
 - **Single-Pass Training:** Streamlined dataset loading for efficient training.
