@@ -44,7 +44,7 @@ This summation accounts for the cumulative gradient descent updates over the ent
 2. Incorporating Batch-Wise Gradient Effects
 To derive a closed-form solution, we need to simulate the effect of multiple gradient updates for each batch in a single step. This involves computing an effective gradient that encapsulates the contributions of all batches:
 
-```
+```math
 ΔW=−η i=1∑Nbatches  ∇W Li(W)
 ```
 
@@ -52,7 +52,7 @@ This equation is equivalent to computing a "global gradient" that captures the c
 
 3. Closed-Form Solution Using Kernel Matrix
 To extend this concept to our kernel-based model, we use the kernel matrix 𝐾 that captures the relationships between data points. The optimal weight vector in the kernel space can be calculated using:
-```
+```math
 𝛼=(𝐾+𝜆𝐼)−1𝑌
 ```
 Where:
@@ -135,7 +135,7 @@ from datasets import load_dataset
 ```
 
 Incorporate the batch-wise gradient effects analytically in the solution
-```
+```python
 def compute_batch_aware_solution(K, y, num_epochs, batch_size, learning_rate, lambda_reg=1e-5):
 n = K.shape[0]
 I = torch.eye(n)
@@ -145,14 +145,14 @@ effective_K = K + lambda_reg I
 ```
 
 # Incorporate batch effects in the kernel matrix
-```
+```python
 A_inv = torch.inverse(effective_K batch_effect + lambda_reg I)
 alpha = torch.mm(A_inv, y)
 return alpha
 ```
 
 ## Project Structure
-```
+```markdown
 single-pass-training/
 ├── compare.py
 ├── traditional.py
