@@ -23,7 +23,7 @@ Mathematical Derivation for Closed-Form Solution
 In traditional gradient descent, the weight update for each batch 
 𝑖
 i can be expressed as:
-```
+```math
 𝑊𝑡+1=𝑊𝑡−𝜂∇𝑊𝐿𝑖(𝑊𝑡)
 ```
 Where:
@@ -36,7 +36,7 @@ Where:
 After one epoch, the cumulative weight update for all batches 
 {𝑖=1,2,…,𝑁batches} can be represented as:
 
-```
+```math
 𝑊new=𝑊old−𝜂  𝑖=1∑𝑁batches  ∇𝑊𝐿𝑖(𝑊old)
 ```
 This summation accounts for the cumulative gradient descent updates over the entire epoch.
