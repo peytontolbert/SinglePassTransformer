@@ -91,16 +91,14 @@ Where:
 ### Training
 
 To train the model using the single-pass training method:
-```
-bash
+```bash
 python train.py --method single-pass --epochs 50 --batch_size 32 --learning_rate 1e-3
 ```
 
 ### Comparison
 
 For benchmarking against traditional training methods, use the `compare.py` script:
-```
-bash
+```bash
 python compare.py
 ```
 
@@ -128,8 +126,7 @@ Our single-pass training method is implemented in the `train.py` script. Key com
 - **Training Loop:** Optimizes the training loop to handle data in a single pass, updating model weights efficiently.
 - **Evaluation:** Provides functions to evaluate model performance on new data.
 
-```
-python:train.py
+```python:train.py
 import torch
 import torch.nn as nn
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
